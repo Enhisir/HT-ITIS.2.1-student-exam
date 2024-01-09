@@ -1,0 +1,57 @@
+@page
+@model UiApp.Pages.FightCalculator
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="modal-body row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="form-group">
+                <label for="Hero.Name">Имя героя</label>
+                <input type="text" class="form-control" id="Hero.Name" asp-for="Hero.Name">
+            </div>
+            <div class="form-group">
+                <label for="Hero.HitPoints">Хит-поинты</label>
+                <input type="number" class="form-control" id="Hero.HitPoints" asp-for="Hero.HitPoints">
+            </div>
+            <div class="form-group">
+                <label for="Hero.ArmorClass">Класс брони</label>
+                <input type="number" class="form-control" id="Hero.ArmorClass" asp-for="Hero.ArmorClass">
+            </div>
+            <div class="form-group">
+                <label for="Hero.AttackNumberPerRound">Допустимое количество атак в раунде</label>
+                <input type="number" class="form-control" id="Hero.AttackNumberPerRound" 
+                       asp-for="Hero.AttackNumberPerRound">
+            </div>
+            <div class="form-group">
+                <label for="Hero.AttackModifier">Модификатор атаки</label>
+                <input type="number" class="form-control" id="Hero.AttackModifier" asp-for="Hero.AttackModifier">
+            </div>
+            <div class="form-group">
+                <label for="Hero.DamageModifier">Модификатор урона</label>
+                <input type="number" class="form-control" id="Hero.DamageModifier" asp-for="Hero.DamageModifier">
+            </div>
+            <div class="form-group">
+                <label for="Hero.MaxCubeDamage">Кубик урона</label>
+                <input type="number" class="form-control" id="Hero.MaxCubeDamage" asp-for="Hero.MaxCubeDamage">
+            </div>
+            <div class="form-group">
+                <label for="Hero.CubeDamageMultiplier">Множитель кубика</label>
+                <input type="number" class="form-control" id="Hero.CubeDamageMultiplier" 
+                       asp-for="Hero.CubeDamageMultiplier">
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">@Model.ButtonMessage</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        @if (Model.FightResult is not null)
+        {
+            <h3>@Model.FightResult.Message</h3>
+            foreach (var item in Model.FightResult.Log)
+            {
+                <p>@item.ToString()</p>
+            }
+        }
+    </div>
+</div>
